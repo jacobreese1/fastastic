@@ -5,7 +5,8 @@
   padding: 0;
   margin: 0;
   height: 1000px;
-  background-image: linear-gradient(to bottom right, var(--color-primary) , var(--color-primary-dark));
+  background-color: var(--color-primary);
+  /* background-image: linear-gradient(to bottom right, var(--color-primary) , var(--color-primary-dark)); */
 }
 
 *,
@@ -14,4 +15,10 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+
+.logo {
+  height: 30vh;
+  width: auto;
+  margin: var(--u-margin-lg);
 }

@@ -1,0 +1,7 @@
+@import "../design/css-variables.module.css";
+
+.logo {
+  height: 30vh;
+  width: auto;
+  margin: var(--u-margin-lg);
+}

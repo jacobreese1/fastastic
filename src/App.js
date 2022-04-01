@@ -1,14 +1,10 @@
 import styles from "./App.module.css";
-import logo from "./design/images/logo-type.png"
+import Header from "./ui/Header";
 
 function App() {
   return (
     <div className={styles.App}>
-      <div>
-        <header>
-          <img src={logo} alt="Logo" className={styles.logo} />
-        </header>
-      </div>
+      <Header />
     </div>
   );
 }

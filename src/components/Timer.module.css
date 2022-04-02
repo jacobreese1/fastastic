@@ -1,1 +1,31 @@
 @import "../design/css-variables.module.css";
+
+.Timer {
+  height: 100%;
+  width: 100%;
+}
+
+.timerContainer {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 600;
+  font-size: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  list-style: none;
+  justify-content: center;
+}
+
+.timerNumber {
+  display: flex;
+  height: 20vh;
+  width: 30vh;
+  color: var(--color-gray-dark-3);
+  flex-wrap: wrap;
+  background-color: var(--color-primary-dark);
+  box-shadow: var(--shadow-light);
+  border-radius: 5px;
+  margin: 5px;
+  align-items: center;
+  justify-content: center;
+}

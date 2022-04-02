@@ -1,5 +1,6 @@
 import styles from "./Timer.module.css";
 import { useState, useEffect } from "react";
+import ToggleButton from "../ui/ToggleButton";
 
 const Timer = () => {
   const calculateTimeLeft = () => {
@@ -42,7 +43,8 @@ const Timer = () => {
             {timeLeft.secs} <br /> Seconds
           </li>
         </ul>
-      </div>
+          </div>
+          <ToggleButton label="Presets" type="Submit"></ToggleButton>
     </div>
   );
 };

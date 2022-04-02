@@ -7,8 +7,8 @@
   height: 30px;
   width: 125px;
   font-size: 14px;
-  margin-top: 3px;
-  background-color: var(--color-secondary-dark);
+  margin-top: var(--u-margin-hg);
+  background-color: var(--color-secondary);
   color: var(--color-white);
   box-shadow: var(--shadow-dark);
   transition: all 200ms;
@@ -16,8 +16,6 @@
 
 .btn:hover,
 .btn:active {
-  height: 35px;
-  width: 130px;
-  font-size: 16px;
+  background-color: var(--color-secondary-dark);
   cursor: pointer;
 }

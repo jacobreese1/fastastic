@@ -20,6 +20,7 @@
 
 .btnLabel .btnBtn {
   outline: none;
+  position: absolute;
   align-items: center;
   justify-content: center;
   border: none;
@@ -32,14 +33,32 @@
   color: var(--color-white);
   box-shadow: var(--shadow-dark);
   transition: all 200ms;
+  z-index: 10;
 }
 
 .btnBtn:hover,
 .btnBtn:active {
-  background-color: var(--color-secondary-dark);
   cursor: pointer;
 }
 
 .btn:checked + .btnLabel .btnBtn {
   background-color: var(--color-secondary-dark);
+}
+
+.btnText {
+  position: relative;
+  z-index: 100;
+  display: flex;
+  margin: auto;
+  color: var(--color-white);
+}
+
+.presetBtnContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: absolute;
+    margin: var(--u-margin-lg) auto;
+    left: 50%;
+    right: 50%;
 }

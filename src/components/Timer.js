@@ -23,6 +23,8 @@ const Timer = () => {
   };
 
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+  const [checked, setChecked] = useState(true);
+
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -49,7 +51,6 @@ const Timer = () => {
         label="Presets"
         type="checkbox"
         id="Presets"
-        display={<Button label="10 pm - 6pm" type="submit" />}
       />
     </div>
   );

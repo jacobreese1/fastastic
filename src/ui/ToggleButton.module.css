@@ -1,21 +1,45 @@
 @import "../design/css-variables.module.css";
 
 .btn {
+  visibility: hidden;
+  height: 0;
+  width: 0;
+}
+
+.btnLabel {
+  display: flex;
+  cursor: pointer;
+  width: 125px;
+  height: 30px;
+  background: transparent;
+  border-radius: 3px;
+  margin: var(--u-margin-lg) auto;
+  position: relative;
+  transition: background-color 0.2s;
+}
+
+.btnLabel .btnBtn {
   outline: none;
+  align-items: center;
+  justify-content: center;
   border: none;
   border-radius: 3px;
   height: 30px;
   width: 125px;
   font-size: 14px;
-  margin-top: var(--u-margin-hg);
+  margin-top: 3px;
   background-color: var(--color-secondary);
   color: var(--color-white);
   box-shadow: var(--shadow-dark);
   transition: all 200ms;
 }
 
-.btn:hover,
-.btn:active {
+.btnBtn:hover,
+.btnBtn:active {
   background-color: var(--color-secondary-dark);
   cursor: pointer;
+}
+
+.btn:checked + .btnLabel .btnBtn {
+  background-color: var(--color-secondary-dark);
 }

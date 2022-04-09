@@ -22,10 +22,19 @@
   width: 30vh;
   color: var(--color-gray-dark-3);
   flex-wrap: wrap;
+  flex-direction: row;
   background-color: var(--color-primary-dark);
   box-shadow: var(--shadow-light);
   border-radius: 5px;
   margin: 5px;
   align-items: center;
   justify-content: center;
+}
+
+.timeNegative {
+  display: flex;
+  margin: var(--u-margin-lg);
+  position: relative;
+  right: 25px;
+  font-size: 40px;
 }

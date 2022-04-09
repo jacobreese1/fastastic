@@ -1,5 +1,4 @@
 import styles from "./ToggleButton.module.css";
-import Button from "./Button";
 import { useState } from "react";
 
 const ToggleButton = (props) => {
@@ -23,15 +22,7 @@ const ToggleButton = (props) => {
         <span className={styles.btnText}>{props.label}</span>
       </label>
       <div className={styles.presetBtnContainer}>
-        {isClicked ? (
-          <div>
-            <Button type="submit" label="10pm - 6pm" />{" "}
-            <Button type="submit" label="6pm - 12pm" />{" "}
-            <Button type="submit" label="8pm - 12pm" />{" "}
-          </div>
-        ) : (
-          <div></div>
-        )}
+        {isClicked ? <div>{props.hiddenDisplay}</div> : <div></div>}
       </div>
     </div>
   );

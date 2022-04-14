@@ -10,13 +10,13 @@ const Timer = () => {
   const onClickHandler = (label) => {
     const stopTime = new Date();
 
-    if (label === "10pm - 6pm") {
+    if (label === "20 hours (end 6pm)") {
       stopTime.setDate(stopTime.getDate() + 1);
       stopTime.setHours(18, 0, 0, 0);
-    } else if (label === "6pm - 12pm") {
+    } else if (label === "18 hours (end 12pm)") {
       stopTime.setDate(stopTime.getDate() + 1);
       stopTime.setHours(12, 0, 0, 0);
-    } else if (label === "8pm - 12pm") {
+    } else if (label === "16 hours (end 12pm)") {
       stopTime.setDate(stopTime.getDate() + 1);
       stopTime.setHours(12, 0, 0, 0);
     }
@@ -26,7 +26,6 @@ const Timer = () => {
 
   const calculateTimeLeft = () => {
     const currentTime = new Date();
-    // const currentTime = Date.parse("april 13, 2022, 22:00:00");
 
     const diff = endTime - currentTime;
 
@@ -89,18 +88,18 @@ const Timer = () => {
           <div>
             <Button
               type="submit"
-              label="10pm - 6pm"
-              onClick={() => onClickHandler("10pm - 6pm")}
+              label="20 hours (end 6pm)"
+              onClick={() => onClickHandler("20 hours (end 6pm)")}
             />
             <Button
               type="submit"
-              label="6pm - 12pm"
-              onClick={() => onClickHandler("6pm - 12pm")}
+              label="18 hours (end 12pm)"
+              onClick={() => onClickHandler("18 hours (end 12pm)")}
             />
             <Button
               type="submit"
-              label="8pm - 12pm"
-              onClick={() => onClickHandler("8pm - 12pm")}
+              label="16 hours (end 12pm)"
+              onClick={() => onClickHandler("16 hours (end 12pm)")}
             />
           </div>
         }

@@ -1,0 +1,28 @@
+@import "../design/css-variables.module.css";
+
+.tableContainer {
+  display: grid;
+  grid-template-columns: 200px 200px;
+  margin: 250px auto;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.input {
+  background-color: var(--color-white);
+  width: 95px;
+  height: 30px;
+  text-align: center;
+  border: none;
+  border-radius: 3px;
+  box-shadow: var(--shadow-dark);
+  margin: 10px;
+  justify-self: center;
+  grid-column: 1 / 2;
+}
+
+.trackerBtn {
+  scale: 75%;
+}

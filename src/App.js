@@ -1,5 +1,6 @@
 import styles from "./App.module.css";
 import Timer from "./components/Timer";
+import WeightTracker from "./components/WeightTracker";
 import Header from "./ui/Header";
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
     <div className={styles.App}>
       <Header />
       <Timer />
+      <WeightTracker />
     </div>
   );
 }

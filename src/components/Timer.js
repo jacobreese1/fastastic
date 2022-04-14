@@ -4,21 +4,31 @@ import ToggleButton from "../ui/ToggleButton";
 import Button from "../ui/Button";
 
 const Timer = () => {
+  const [endTime, setEndTime] = useState();
   const [isNegative, setIsNegative] = useState(false);
 
-  const calculateTimeLeft = (value) => {
+  const onClickHandler = (label) => {
+    const stopTime = new Date();
+
+    if (label === "10pm - 6pm") {
+      stopTime.setDate(stopTime.getDate() + 1);
+      stopTime.setHours(18, 0, 0, 0);
+    } else if (label === "6pm - 12pm") {
+      stopTime.setDate(stopTime.getDate() + 1);
+      stopTime.setHours(12, 0, 0, 0);
+    } else if (label === "8pm - 12pm") {
+      stopTime.setDate(stopTime.getDate() + 1);
+      stopTime.setHours(12, 0, 0, 0);
+    }
+    calculateTimeLeft(stopTime.toDateString());
+    setEndTime(stopTime);
+  };
+
+  const calculateTimeLeft = () => {
     const currentTime = new Date();
-    // const stopTime = new Date();
+    // const currentTime = Date.parse("april 13, 2022, 22:00:00");
 
-    const endTime = Date.toString(value);
-    const stopTime = Date.parse(endTime);
-
-    console.log(endTime);
-    // stopTime.setDate(stopTime.getDate() + 1);
-    // stopTime.setHours(18, 0, 0, 0);
-
-    // console.log(endTime)
-    const diff = stopTime - currentTime;
+    const diff = endTime - currentTime;
 
     let timeLeft = {};
 
@@ -39,24 +49,6 @@ const Timer = () => {
     return timeLeft;
   };
 
-  const onClickHandler = (label) => {
-    const stopTime = new Date();
-
-    if (label == "10pm - 6pm") {
-      stopTime.setDate(stopTime.getDate() + 1);
-      stopTime.setHours(18, 0, 0, 0);
-      calculateTimeLeft(stopTime);
-      console.log(stopTime);
-    } else if (label == "6pm - 12pm") {
-      stopTime.setDate(stopTime.getDate() + 1);
-      stopTime.setHours(12, 0, 0, 0);
-    } else if (label == "8pm - 12pm") {
-      stopTime.setDate(stopTime.getDate() + 1);
-      stopTime.setHours(12, 0, 0, 0);
-    }
-    // return stopTime;
-  };
-
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft(() => {}));
 
   if (timeLeft > 24) {
@@ -67,14 +59,14 @@ const Timer = () => {
     const timer = setTimeout(() => {
       setTimeLeft(calculateTimeLeft(() => {}));
     }, 1000);
-  });
+  }, [onClickHandler]);
 
   return (
     <div className={styles.Timer}>
       <div>
         <ul className={styles.timerContainer}>
           <li className={styles.timerNumber}>
-            {isNegative ? (
+            {!isNegative ? (
               <div></div>
             ) : (
               <div className={styles.timeNegative}>-</div>

@@ -1,6 +1,6 @@
 @import "../design/css-variables.module.css";
 
-.tableContainer {
+.inputContainer {
   display: grid;
   grid-template-columns: 200px 200px;
   margin: 250px auto;
@@ -25,4 +25,19 @@
 
 .trackerBtn {
   scale: 75%;
+}
+
+.chartContainer {
+  position: relative;
+  display: grid;
+  margin: auto;
+  top: -200px;
+  list-style: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--color-black);
+  grid-template-columns: repeat(5, 50px);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }

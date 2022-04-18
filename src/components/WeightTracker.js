@@ -16,9 +16,11 @@ const WeightTracker = () => {
     console.log(weightInput);
   };
 
+  const outputArray = (e) => {};
+
   return (
     <div>
-      <form className={styles.tableContainer}>
+      <form className={styles.inputContainer}>
         <input
           className={styles.input}
           placeholder="Enter weight"
@@ -28,6 +30,11 @@ const WeightTracker = () => {
           <Button type="submit" label="Submit" onClick={onClickHandler} />
         </div>
       </form>
+      <div className={styles.chartContainer}>
+        {DUMMY_INPUTS.map((input) => (
+          <li key={input}>{input}</li>
+        ))}
+      </div>
     </div>
   );
 };

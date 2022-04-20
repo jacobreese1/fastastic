@@ -65,7 +65,7 @@ const Timer = () => {
       <div>
         <ul className={styles.timerContainer}>
           <li className={styles.timerNumber}>
-            {!isNegative ? (
+            {isNegative ? (
               <div></div>
             ) : (
               <div className={styles.timeNegative}>-</div>

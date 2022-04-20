@@ -5,32 +5,97 @@ import { useState, useEffect } from "react";
 const WeightTracker = () => {
   const [weightInput, setWeightInput] = useState("");
   const [todaysDate, setTodaysDate] = useState();
-  // const [addWeight, setAddWeight] = useState([]);
+  const [weightLog, setWeightLog] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [httpError, setHttpError] = useState();
 
   const date = new Date();
   const formattedDate = date.toLocaleDateString();
 
-  const DUMMY_INPUTS = [145, 150, 155, 160, 165];
+  // const DUMMY_INPUTS = [145, 150, 155, 160, 165];
 
   const inputHandler = (e) => {
     setWeightInput(e.target.value);
   };
 
-  const Push = async (e) => {
+  const onClickHandler = async (e) => {
     e.preventDefault();
     setWeightInput(weightInput);
     setTodaysDate(formattedDate);
+    // const key = Math.random();
     await fetch(
       "https://fastastic-1f233-default-rtdb.firebaseio.com/weightLog.json",
       {
         method: "POST",
         body: JSON.stringify({
+          // id: key,
           weightInput,
           todaysDate,
         }),
       }
     );
   };
+
+  // const weightLogHandler = async (e) => {
+  //   await fetch(
+  //     "https://fastastic-1f233-default-rtdb.firebaseio.com/weightLog.json",
+  //     {
+  //       method: "GET",
+  //       body: JSON.stringify({
+  //         weightInput,
+  //         todaysDate,
+  //       }),
+  //     }
+  //   );
+  // };
+
+  useEffect(() => {
+    const fetchWeightLog = async () => {
+      const response = await fetch(
+        "https://fastastic-1f233-default-rtdb.firebaseio.com/weightLog.json"
+      );
+
+      if (!response.ok) {
+        throw new Error("Something went wrong!");
+      }
+
+      const responseData = await response.json();
+
+      const loadedWeightLog = [];
+
+      for (const key in responseData) {
+        loadedWeightLog.push({
+          id: key,
+          date: responseData[key].todaysDate,
+          weight: responseData[key].weightInput,
+        });
+      }
+
+      setWeightLog(loadedWeightLog);
+      setIsLoading(false);
+    };
+
+    fetchWeightLog().catch((error) => {
+      setIsLoading(false);
+      setHttpError(error.message);
+    });
+  }, []);
+
+  if (httpError) {
+    return (
+      <section>
+        <p>{httpError}</p>
+      </section>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <section>
+        <p>Loading...</p>
+      </section>
+    );
+  }
 
   // const onClickHandler = (e) => {
   //   e.preventDefault();
@@ -51,13 +116,14 @@ const WeightTracker = () => {
           type="number"
         />
         <div className={styles.trackerBtn}>
-          <Button type="submit" label="Submit" onClick={Push} />
+          <Button type="submit" label="Submit" onClick={onClickHandler} />
         </div>
       </form>
       <div className={styles.chartContainer}>
-        {DUMMY_INPUTS.map((input) => (
-          <li key={input}>{input}</li>
+        {weightLog.map((input) => (
+          <li key={input.id}>{input.weight}{input.date}</li>
         ))}
+        {/* {weightLog} */}
       </div>
     </div>
   );

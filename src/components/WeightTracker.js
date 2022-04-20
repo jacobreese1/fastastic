@@ -1,9 +1,10 @@
 import styles from "./WeightTracker.module.css";
 import Button from "../ui/Button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const WeightTracker = () => {
   const [weightInput, setWeightInput] = useState();
+  const [addWeight, setAddWeight] = useState([]);
 
   const DUMMY_INPUTS = [145, 150, 155, 160, 165];
 
@@ -13,10 +14,11 @@ const WeightTracker = () => {
 
   const onClickHandler = (e) => {
     e.preventDefault();
-    console.log(weightInput);
+    // const newWeight = [...DUMMY_INPUTS];
+    DUMMY_INPUTS.push(weightInput);
+    setAddWeight(DUMMY_INPUTS);
+    console.log(DUMMY_INPUTS);
   };
-
-  const outputArray = (e) => {};
 
   return (
     <div>
@@ -25,6 +27,7 @@ const WeightTracker = () => {
           className={styles.input}
           placeholder="Enter weight"
           onChange={inputHandler}
+          type="number"
         />
         <div className={styles.trackerBtn}>
           <Button type="submit" label="Submit" onClick={onClickHandler} />

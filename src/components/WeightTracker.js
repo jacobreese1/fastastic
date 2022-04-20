@@ -4,7 +4,11 @@ import { useState, useEffect } from "react";
 
 const WeightTracker = () => {
   const [weightInput, setWeightInput] = useState("");
+  const [todaysDate, setTodaysDate] = useState();
   // const [addWeight, setAddWeight] = useState([]);
+
+  const date = new Date();
+  const formattedDate = date.toLocaleDateString();
 
   const DUMMY_INPUTS = [145, 150, 155, 160, 165];
 
@@ -15,15 +19,22 @@ const WeightTracker = () => {
   const Push = async (e) => {
     e.preventDefault();
     setWeightInput(weightInput);
-    await fetch("https://fastastic-1f233-default-rtdb.firebaseio.com/weightLog.json", {
-      method: "POST",
-      body: JSON.stringify({ weightInput }),
-    });
+    setTodaysDate(formattedDate);
+    await fetch(
+      "https://fastastic-1f233-default-rtdb.firebaseio.com/weightLog.json",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          weightInput,
+          todaysDate,
+        }),
+      }
+    );
   };
 
   // const onClickHandler = (e) => {
   //   e.preventDefault();
-    // const newWeight = [...DUMMY_INPUTS];
+  // const newWeight = [...DUMMY_INPUTS];
   //   DUMMY_INPUTS.push(weightInput);
   //   setAddWeight(DUMMY_INPUTS);
   //   console.log(DUMMY_INPUTS);

@@ -79,7 +79,7 @@ const WeightTracker = () => {
       setIsLoading(false);
       setHttpError(error.message);
     });
-  }, []);
+  }, [onClickHandler]);
 
   if (httpError) {
     return (

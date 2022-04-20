@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 const WeightTracker = () => {
   const [weightInput, setWeightInput] = useState("");
-  const [addWeight, setAddWeight] = useState([]);
+  // const [addWeight, setAddWeight] = useState([]);
 
   const DUMMY_INPUTS = [145, 150, 155, 160, 165];
 
@@ -21,13 +21,13 @@ const WeightTracker = () => {
     });
   };
 
-  const onClickHandler = (e) => {
-    e.preventDefault();
+  // const onClickHandler = (e) => {
+  //   e.preventDefault();
     // const newWeight = [...DUMMY_INPUTS];
-    DUMMY_INPUTS.push(weightInput);
-    setAddWeight(DUMMY_INPUTS);
-    console.log(DUMMY_INPUTS);
-  };
+  //   DUMMY_INPUTS.push(weightInput);
+  //   setAddWeight(DUMMY_INPUTS);
+  //   console.log(DUMMY_INPUTS);
+  // };
 
   return (
     <div>

@@ -3,13 +3,22 @@ import Button from "../ui/Button";
 import { useState, useEffect } from "react";
 
 const WeightTracker = () => {
-  const [weightInput, setWeightInput] = useState();
+  const [weightInput, setWeightInput] = useState("");
   const [addWeight, setAddWeight] = useState([]);
 
   const DUMMY_INPUTS = [145, 150, 155, 160, 165];
 
   const inputHandler = (e) => {
     setWeightInput(e.target.value);
+  };
+
+  const Push = async (e) => {
+    e.preventDefault();
+    setWeightInput(weightInput);
+    await fetch("https://fastastic-1f233-default-rtdb.firebaseio.com/weightLog.json", {
+      method: "POST",
+      body: JSON.stringify({ weightInput }),
+    });
   };
 
   const onClickHandler = (e) => {
@@ -26,11 +35,12 @@ const WeightTracker = () => {
         <input
           className={styles.input}
           placeholder="Enter weight"
+          value={weightInput}
           onChange={inputHandler}
           type="number"
         />
         <div className={styles.trackerBtn}>
-          <Button type="submit" label="Submit" onClick={onClickHandler} />
+          <Button type="submit" label="Submit" onClick={Push} />
         </div>
       </form>
       <div className={styles.chartContainer}>

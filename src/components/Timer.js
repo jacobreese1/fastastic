@@ -6,23 +6,70 @@ import Button from "../ui/Button";
 const Timer = () => {
   const [endTime, setEndTime] = useState();
   const [isNegative, setIsNegative] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const [httpError, setHttpError] = useState();
 
-  const onClickHandler = (label) => {
+  const onClickHandler = async (label) => {
     const stopTime = new Date();
 
     if (label === "20 hours (end 6pm)") {
       stopTime.setDate(stopTime.getDate() + 1);
       stopTime.setHours(18, 0, 0, 0);
-    } else if (label === "18 hours (end 12pm)") {
+    } else if (label === "18 hours (end 4pm)") {
       stopTime.setDate(stopTime.getDate() + 1);
-      stopTime.setHours(12, 0, 0, 0);
+      stopTime.setHours(16, 0, 0, 0);
     } else if (label === "16 hours (end 12pm)") {
       stopTime.setDate(stopTime.getDate() + 1);
       stopTime.setHours(12, 0, 0, 0);
     }
     calculateTimeLeft(stopTime.toDateString());
     setEndTime(stopTime);
+    console.log(endTime);
+
+    await fetch(
+      "https://fastastic-1f233-default-rtdb.firebaseio.com/fastTimer.json",
+      {
+        method: "DELETE",
+        body: JSON.stringify({
+          endTime,
+        }),
+      }
+    );
+
+    await fetch(
+      "https://fastastic-1f233-default-rtdb.firebaseio.com/fastTimer.json",
+      {
+        method: "PUT",
+        body: JSON.stringify({
+          endTime,
+        }),
+      }
+    );
   };
+
+  useEffect(() => {
+    const fetchFastTimer = async () => {
+      await fetch(
+        "https://fastastic-1f233-default-rtdb.firebaseio.com/fastTimer.json"
+      )
+        .then((response) => response.json())
+        .then((response) => {
+          setEndTime(Date.parse(response.endTime));
+          // console.log(Date.parse(endTime));
+          // calculateTimeLeft();
+        });
+
+      setIsLoading(false);
+    };
+
+    fetchFastTimer().catch((error) => {
+      setIsLoading(false);
+      setHttpError(error.message);
+    });
+
+    fetchFastTimer();
+  }, []);
 
   const calculateTimeLeft = () => {
     const currentTime = new Date();
@@ -54,11 +101,49 @@ const Timer = () => {
     setIsNegative(true);
   }
 
+  // useEffect(() => {
+  //   const fetchFastTimer = async () => {
+  //     await fetch(
+  //       "https://fastastic-1f233-default-rtdb.firebaseio.com/fastTimer.json"
+  //     )
+  //       .then((response) => response.json())
+  //       .then((response) => {
+  //         setEndTime(response);
+  //       });
+
+  //     // setEndTime(response);
+  //     setIsLoading(false);
+  //   };
+
+  //   fetchFastTimer().catch((error) => {
+  //     setIsLoading(false);
+  //     setHttpError(error.message);
+  //   });
+
+  //   fetchFastTimer();
+  // }, []);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setTimeLeft(calculateTimeLeft(() => {}));
     }, 1000);
   }, [onClickHandler]);
+
+  if (httpError) {
+    return (
+      <section>
+        <p>{httpError}</p>
+      </section>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <section>
+        <p>Loading...</p>
+      </section>
+    );
+  }
 
   return (
     <div className={styles.Timer}>
@@ -94,7 +179,7 @@ const Timer = () => {
             <Button
               type="submit"
               label="18 hours (end 12pm)"
-              onClick={() => onClickHandler("18 hours (end 12pm)")}
+              onClick={() => onClickHandler("18 hours (end 4pm)")}
             />
             <Button
               type="submit"

@@ -36,19 +36,6 @@ const WeightTracker = () => {
     );
   };
 
-  // const weightLogHandler = async (e) => {
-  //   await fetch(
-  //     "https://fastastic-1f233-default-rtdb.firebaseio.com/weightLog.json",
-  //     {
-  //       method: "GET",
-  //       body: JSON.stringify({
-  //         weightInput,
-  //         todaysDate,
-  //       }),
-  //     }
-  //   );
-  // };
-
   useEffect(() => {
     const fetchWeightLog = async () => {
       const response = await fetch(
@@ -79,7 +66,7 @@ const WeightTracker = () => {
       setIsLoading(false);
       setHttpError(error.message);
     });
-  }, [onClickHandler]);
+  }, []);
 
   if (httpError) {
     return (

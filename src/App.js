@@ -3,7 +3,7 @@ import Timer from "./components/Timer";
 import WeightTracker from "./components/WeightTracker";
 import Header from "./ui/Header";
 
-function App() {
+const App = () => {
   return (
     <div className={styles.App}>
       <Header />
@@ -11,6 +11,6 @@ function App() {
       <WeightTracker />
     </div>
   );
-}
+};
 
 export default App;

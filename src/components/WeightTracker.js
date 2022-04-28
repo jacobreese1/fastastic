@@ -12,8 +12,6 @@ const WeightTracker = () => {
   const date = new Date();
   const formattedDate = date.toLocaleDateString();
 
-  // const DUMMY_INPUTS = [145, 150, 155, 160, 165];
-
   const inputHandler = (e) => {
     setWeightInput(e.target.value);
   };
@@ -22,13 +20,11 @@ const WeightTracker = () => {
     e.preventDefault();
     setWeightInput(weightInput);
     setTodaysDate(formattedDate);
-    // const key = Math.random();
     await fetch(
       "https://fastastic-1f233-default-rtdb.firebaseio.com/weightLog.json",
       {
         method: "POST",
         body: JSON.stringify({
-          // id: key,
           weightInput,
           todaysDate,
         }),
@@ -84,14 +80,6 @@ const WeightTracker = () => {
     );
   }
 
-  // const onClickHandler = (e) => {
-  //   e.preventDefault();
-  // const newWeight = [...DUMMY_INPUTS];
-  //   DUMMY_INPUTS.push(weightInput);
-  //   setAddWeight(DUMMY_INPUTS);
-  //   console.log(DUMMY_INPUTS);
-  // };
-
   return (
     <div>
       <form className={styles.inputContainer}>
@@ -108,9 +96,11 @@ const WeightTracker = () => {
       </form>
       <div className={styles.chartContainer}>
         {weightLog.map((input) => (
-          <li key={input.id}>{input.weight}{input.date}</li>
+          <li key={input.id}>
+            {input.weight}
+            {input.date}
+          </li>
         ))}
-        {/* {weightLog} */}
       </div>
     </div>
   );

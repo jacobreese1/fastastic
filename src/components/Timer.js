@@ -6,7 +6,6 @@ import Button from "../ui/Button";
 const Timer = () => {
   const [endTime, setEndTime] = useState();
   const [isNegative, setIsNegative] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState();
 
@@ -56,8 +55,6 @@ const Timer = () => {
         .then((response) => response.json())
         .then((response) => {
           setEndTime(Date.parse(response.endTime));
-          // console.log(Date.parse(endTime));
-          // calculateTimeLeft();
         });
 
       setIsLoading(false);
@@ -100,28 +97,6 @@ const Timer = () => {
   if (timeLeft > 24) {
     setIsNegative(true);
   }
-
-  // useEffect(() => {
-  //   const fetchFastTimer = async () => {
-  //     await fetch(
-  //       "https://fastastic-1f233-default-rtdb.firebaseio.com/fastTimer.json"
-  //     )
-  //       .then((response) => response.json())
-  //       .then((response) => {
-  //         setEndTime(response);
-  //       });
-
-  //     // setEndTime(response);
-  //     setIsLoading(false);
-  //   };
-
-  //   fetchFastTimer().catch((error) => {
-  //     setIsLoading(false);
-  //     setHttpError(error.message);
-  //   });
-
-  //   fetchFastTimer();
-  // }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -178,7 +153,7 @@ const Timer = () => {
             />
             <Button
               type="submit"
-              label="18 hours (end 12pm)"
+              label="18 hours (end 4pm)"
               onClick={() => onClickHandler("18 hours (end 4pm)")}
             />
             <Button

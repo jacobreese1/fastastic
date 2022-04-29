@@ -97,8 +97,8 @@ const WeightTracker = () => {
       <div className={styles.chartContainer}>
         {weightLog.map((input) => (
           <li key={input.id}>
-            {input.weight}
-            {input.date}
+            <div className={styles.weight}>{input.weight}</div>
+            <div className={styles.date}>{input.date}</div>
           </li>
         ))}
       </div>

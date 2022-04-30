@@ -102,7 +102,7 @@ const Timer = () => {
     const timer = setTimeout(() => {
       setTimeLeft(calculateTimeLeft(() => {}));
     }, 1000);
-  }, [onClickHandler]);
+  }, [onClickHandler, calculateTimeLeft]);
 
   if (httpError) {
     return (

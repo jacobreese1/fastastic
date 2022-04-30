@@ -42,3 +42,8 @@
   align-items: center;
   text-align: center;
 }
+
+.chart {
+  width: 500px;
+  height: 500px;
+}

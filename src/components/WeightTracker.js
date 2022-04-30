@@ -52,8 +52,8 @@ const WeightTracker = () => {
     datasets: [
       {
         label: "My First dataset",
-        backgroundColor: "rgb(255, 99, 132)",
-        borderColor: "rgb(255, 99, 132)",
+        backgroundColor: "#1effbc",
+        borderColor: "#1effbc",
         data: dummy_array,
       },
     ],
@@ -131,7 +131,7 @@ const WeightTracker = () => {
   }
 
   return (
-    <div>
+    <div className={styles.weightTrackerContainer}>
       <form className={styles.inputContainer}>
         <input
           className={styles.input}
@@ -144,16 +144,16 @@ const WeightTracker = () => {
           <Button type="submit" label="Submit" onClick={onClickHandler} />
         </div>
       </form>
-      <div className={styles.chartContainer}>
+      <div className={styles.weightList}>
         {weightLog.map((input) => (
           <li key={input.id}>
             <div className={styles.weight}>{input.weight}</div>
             <div className={styles.date}>{input.date}</div>
           </li>
         ))}
-        <div className={styles.chart}>
-          <Line options={options} data={data} />
-        </div>
+      </div>
+      <div className={styles.chart}>
+        <Line options={options} data={data} />
       </div>
     </div>
   );

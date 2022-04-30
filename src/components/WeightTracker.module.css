@@ -27,7 +27,7 @@
   scale: 75%;
 }
 
-.chartContainer {
+.weightList {
   position: relative;
   display: grid;
   margin: auto;
@@ -44,6 +44,8 @@
 }
 
 .chart {
-  width: 500px;
-  height: 500px;
+  width: 75vw;
+  height: 100%;
+  margin: auto;
+  background-color: var(--color-gray-light-1);
 }

@@ -31,5 +31,6 @@
   width: 75vw;
   height: 100%;
   margin: auto;
+  margin-bottom: 100px;
   background-color: var(--color-gray-light-1);
 }

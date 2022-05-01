@@ -12,53 +12,6 @@ const WeightTracker = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState();
 
-  const dummy_array = ["123", "234", "345", "456", "567"];
-  // const dummy_array2 = [567, 456, 345, 234, 123];
-
-  const options = {
-    plugins: {
-      legend: {
-        display: true,
-      },
-      title: {
-        display: true,
-        text: "Line Chart",
-      },
-      scales: {
-        yAxes: [
-          {
-            scaleLabel: {
-              display: true,
-              labelString: "Weight(lbs)",
-            },
-          },
-        ],
-        xAxes: [
-          {
-            scaleLabel: {
-              display: true,
-              labelString: "Dates",
-            },
-          },
-        ],
-      },
-    },
-  };
-
-  const labels = ["January", "February", "March", "April", "May", "June"];
-
-  const data = {
-    labels: labels,
-    datasets: [
-      {
-        label: "My First dataset",
-        backgroundColor: "#1effbc",
-        borderColor: "#1effbc",
-        data: dummy_array,
-      },
-    ],
-  };
-
   const date = new Date();
   const formattedDate = date.toLocaleDateString();
 
@@ -114,6 +67,59 @@ const WeightTracker = () => {
     });
   }, []);
 
+  const weightArray = [];
+  const dateArray = [];
+
+  for (const key in weightLog) {
+    weightArray.push(weightLog[key].weight);
+  }
+
+  for (const key in weightLog) {
+    dateArray.push(weightLog[key].date);
+  }
+
+  const options = {
+    plugins: {
+      legend: {
+        display: true,
+      },
+      title: {
+        display: true,
+        text: "Line Chart",
+      },
+      scales: {
+        yAxes: [
+          {
+            scaleLabel: {
+              display: true,
+              labelString: "Weight(lbs)",
+            },
+          },
+        ],
+        xAxes: [
+          {
+            scaleLabel: {
+              display: true,
+              labelString: "Dates",
+            },
+          },
+        ],
+      },
+    },
+  };
+
+  const data = {
+    labels: dateArray,
+    datasets: [
+      {
+        label: "Weight (lbs)",
+        backgroundColor: "#1effbc",
+        borderColor: "#1effbc",
+        data: weightArray,
+      },
+    ],
+  };
+
   if (httpError) {
     return (
       <section>
@@ -144,14 +150,6 @@ const WeightTracker = () => {
           <Button type="submit" label="Submit" onClick={onClickHandler} />
         </div>
       </form>
-      <div className={styles.weightList}>
-        {weightLog.map((input) => (
-          <li key={input.id}>
-            <div className={styles.weight}>{input.weight}</div>
-            <div className={styles.date}>{input.date}</div>
-          </li>
-        ))}
-      </div>
       <div className={styles.chart}>
         <Line options={options} data={data} />
       </div>

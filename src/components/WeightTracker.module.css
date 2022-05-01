@@ -34,4 +34,5 @@
   margin-bottom: 100px;
   margin-top: -150px;
   background-color: var(--color-gray-light-1);
+  box-shadow: var(--shadow-dark);
 }

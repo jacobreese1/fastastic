@@ -3,6 +3,7 @@ import Timer from "./components/Timer";
 import WeightTracker from "./components/WeightTracker";
 import Header from "./ui/Header";
 
+
 const App = () => {
   return (
     <div className={styles.App}>

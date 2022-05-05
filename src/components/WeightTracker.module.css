@@ -36,3 +36,9 @@
   background-color: var(--color-gray-light-1);
   box-shadow: var(--shadow-dark);
 }
+
+@media screen and (max-width: 350px) {
+  .chart {
+    height: 300px;
+  }
+}

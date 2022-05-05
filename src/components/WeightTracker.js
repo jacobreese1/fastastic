@@ -2,15 +2,18 @@ import styles from "./WeightTracker.module.css";
 import Button from "../ui/Button";
 import { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
-import { Chart } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
+import { Chart } from "react-chartjs-2";
 
 const WeightTracker = () => {
   const [weightInput, setWeightInput] = useState("");
-  const [todaysDate, setTodaysDate] = useState(new Date().toLocaleDateString());
+  const [todaysDate, setTodaysDate] = useState();
   const [weightLog, setWeightLog] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [httpError, setHttpError] = useState();
+
+  const date = new Date();
+  const formattedDate = date.toLocaleDateString();
 
   const inputHandler = (e) => {
     setWeightInput(e.target.value);
@@ -19,6 +22,7 @@ const WeightTracker = () => {
   const onClickHandler = async (e) => {
     e.preventDefault();
     setWeightInput(weightInput);
+    setTodaysDate(formattedDate);
     await fetch(
       "https://fastastic-1f233-default-rtdb.firebaseio.com/weightLog.json",
       {

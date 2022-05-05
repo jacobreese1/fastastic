@@ -37,3 +37,18 @@
   right: 25px;
   font-size: 40px;
 }
+
+@media screen and (max-width: 550px) {
+  .timerContainer {
+    font-size: 16px;
+  }
+
+  .timerNumber {
+    height: 8vh;
+    width: 12.5vh;
+  }
+
+  .timeNegative {
+   font-size: 18px;
+  }
+}

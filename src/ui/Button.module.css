@@ -22,3 +22,18 @@
   background-color: var(--color-secondary);
   cursor: pointer;
 }
+
+@media screen and (max-width: 550px) {
+  .btn {
+    font-size: 10px;
+    height: 35px;
+    width: 110px;
+  }
+
+  .btn:hover,
+  .btn:active {
+    height: 45px;
+    width: 125px;
+    font-size: 12px;
+  }
+}
